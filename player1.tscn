@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://mmqgwpmfuhp8"]
+
+[ext_resource type="Texture2D" uid="uid://7gff2u8amsxy" path="res://icon.svg" id="1_ng0wg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqb02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ng0wg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="player1" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_pqb02")
