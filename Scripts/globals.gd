@@ -7,10 +7,10 @@ enum Player {
 }
 
 enum KickType {
-	Empty,
-	Low,
-	Back,
-	High,
+	Empty = 0,
+	Low = 1,
+	Back = 2,
+	High = 3,
 }
 
 enum GameStage {
