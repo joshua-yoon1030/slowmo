@@ -15,5 +15,6 @@ enum KickType {
 
 enum GameStage {
 	Pregame,
-	Selection
+	Selection,
+	Postgame
 }
