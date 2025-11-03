@@ -67,10 +67,28 @@ func _begin_postgame():
 			winner = 2
 		_:
 			print("I will implement ties later")
+	_deal_damage(winner)
+
+	if p2Hp <= 0:
+		_begin_endgame(Globals.Player.Player1)
+	elif p1Hp <= 0:
+		_begin_endgame(Globals.Player.Player2)
+	else:
+		_begin_pregame()
+
+func _begin_endgame(winner: Globals.Player):
+	match winner:
+		Globals.Player.Player1:
+			print("P1 beats P2!")
+		Globals.Player.Player2:
+			print("P2 beats P1!")
 	
-	#do health checks here, lead to endgame, else lead back to pregame
-	_begin_pregame()
-	
+func _deal_damage(winner: int):
+	match winner:
+		1:
+			p2Hp -= p1Kick
+		2:
+			p1Hp -= p2Kick
 	
 	
 func _on_player_kicked(player: Globals.Player, kick: Globals.KickType):
