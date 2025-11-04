@@ -13,6 +13,6 @@ RoundTimer = NodePath("RoundTimer")
 position = Vector2(509, 435)
 
 [node name="player2" parent="." instance=ExtResource("2_c6co6")]
-position = Vector2(698, 508)
+position = Vector2(670, 434)
 
 [node name="RoundTimer" parent="." instance=ExtResource("4_g4unr")]
