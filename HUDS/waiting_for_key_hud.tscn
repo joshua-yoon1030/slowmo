@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2aa8m1a0ns7m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yw8j5"]
+
+[node name="WaitingForKeyHud" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 0.862745)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 128.0
+offset_top = 103.0
+offset_right = 1008.0
+offset_bottom = 573.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yw8j5")
+
+[node name="MsgText" type="Label" parent="."]
+offset_left = 202.0
+offset_top = 261.0
+offset_right = 924.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 50
+text = "Press any Key to rebind..."
+horizontal_alignment = 1
+autowrap_mode = 2

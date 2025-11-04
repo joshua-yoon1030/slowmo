@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0oxll7d3tyvi" path="res://Scripts/settings_page.gd" id="1_u14a2"]
 
-[node name="SettingsPage" type="Control"]
+[node name="SettingsPage" type="Control" node_paths=PackedStringArray("p1low", "p1back", "p1high", "p2low", "p2back", "p2high")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +10,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u14a2")
+p1low = NodePath("P1Controls/VBoxContainer/HBoxContainer/Button")
+p1back = NodePath("P1Controls/VBoxContainer/HBoxContainer2/Button")
+p1high = NodePath("P1Controls/VBoxContainer/HBoxContainer3/Button")
+p2low = NodePath("P2Controls/VBoxContainer/HBoxContainer/Button")
+p2back = NodePath("P2Controls/VBoxContainer/HBoxContainer2/Button")
+p2high = NodePath("P2Controls/VBoxContainer/HBoxContainer3/Button")
 
 [node name="Title" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -176,3 +182,8 @@ theme_override_font_sizes/font_size = 50
 text = "L"
 
 [connection signal="pressed" from="P1Controls/VBoxContainer/HBoxContainer/Button" to="." method="_on_p1low_button_pressed"]
+[connection signal="pressed" from="P1Controls/VBoxContainer/HBoxContainer2/Button" to="." method="_on_p1back_button_pressed"]
+[connection signal="pressed" from="P1Controls/VBoxContainer/HBoxContainer3/Button" to="." method="_on_p1high_button_pressed"]
+[connection signal="pressed" from="P2Controls/VBoxContainer/HBoxContainer/Button" to="." method="_on_p2low_button_pressed"]
+[connection signal="pressed" from="P2Controls/VBoxContainer/HBoxContainer2/Button" to="." method="_on_p2back_button_pressed"]
+[connection signal="pressed" from="P2Controls/VBoxContainer/HBoxContainer3/Button" to="." method="_on_p2high_button_pressed"]
