@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://b16r2yirkmybt"]
+[gd_scene load_steps=2 format=3 uid="uid://b7u8x3h3c5vy3"]
+
+[ext_resource type="Script" uid="uid://b0oxll7d3tyvi" path="res://Scripts/settings_page.gd" id="1_u14a2"]
 
 [node name="SettingsPage" type="Control"]
 layout_mode = 3
@@ -7,36 +9,170 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u14a2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Title" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.5
+offset_right = 96.5
+offset_bottom = 69.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Title"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="P1Controls" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 74.0
+offset_right = -561.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="P1Controls"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="P1Title" type="HBoxContainer" parent="P1Controls/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="P1Controls/VBoxContainer/P1Title"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
-text = "Settings"
+text = "P1 Controls
+"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="P1Controls/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="P1Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
-text = "Low Kick"
+text = "Low Kick
+"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="P1Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
 text = "A"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="P1Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="P1Controls/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Back Kick
+"
+
+[node name="Button" type="Button" parent="P1Controls/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "S"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="P1Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="P1Controls/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "High Kick
+"
+
+[node name="Button" type="Button" parent="P1Controls/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "D"
+
+[node name="P2Controls" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -557.0
+offset_top = 80.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="P2Controls"]
+layout_mode = 2
+
+[node name="P2Title" type="HBoxContainer" parent="P2Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="P2Controls/VBoxContainer/P2Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "P2 Controls
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="P2Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="P2Controls/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Low Kick
+"
+
+[node name="Button" type="Button" parent="P2Controls/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "J"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="P2Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="P2Controls/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Back Kick
+"
+
+[node name="Button" type="Button" parent="P2Controls/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "K"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="P2Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="P2Controls/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "High Kick
+"
+
+[node name="Button" type="Button" parent="P2Controls/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "L"
+
+[connection signal="pressed" from="P1Controls/VBoxContainer/HBoxContainer/Button" to="." method="_on_p1low_button_pressed"]

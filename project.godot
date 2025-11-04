@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 
 EventBus="*res://Scripts/EventBus.gd"
 Globals="*res://Scripts/globals.gd"
+Autoload="*res://Scripts/autoload.gd"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [input]
 
