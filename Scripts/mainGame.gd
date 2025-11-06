@@ -68,6 +68,8 @@ func _begin_postgame():
 		_:
 			print("I will implement ties later")
 	_deal_damage(winner)
+	EventBus.log_kick.emit(Globals.Player.Player1, p1Kick)
+	EventBus.log_kick.emit(Globals.Player.Player2, p2Kick)
 
 	if p2Hp <= 0:
 		_begin_endgame(Globals.Player.Player1)
@@ -89,6 +91,7 @@ func _deal_damage(winner: int):
 			p2Hp -= p1Kick
 		2:
 			p1Hp -= p2Kick
+	EventBus.update_hp.emit(p1Hp, p2Hp)
 	
 	
 func _on_player_kicked(player: Globals.Player, kick: Globals.KickType):
@@ -102,3 +105,4 @@ func _on_player_kicked(player: Globals.Player, kick: Globals.KickType):
 		Globals.Player.Player2:
 			print("Kick Saved for player 2: " , kick)
 			p2Kick = kick
+	

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://35q6s26q8nfe"]
+[gd_scene load_steps=6 format=3 uid="uid://35q6s26q8nfe"]
 
 [ext_resource type="PackedScene" uid="uid://mmqgwpmfuhp8" path="res://Scenes/player1.tscn" id="1_schyv"]
 [ext_resource type="Script" uid="uid://ceor0l2ry7vs1" path="res://Scripts/mainGame.gd" id="1_sp22m"]
 [ext_resource type="PackedScene" uid="uid://egbhsubu762j" path="res://Scenes/player_2.tscn" id="2_c6co6"]
 [ext_resource type="PackedScene" uid="uid://c1fd8x4g1hr6q" path="res://Scenes/round_timer.tscn" id="4_g4unr"]
+[ext_resource type="PackedScene" uid="uid://1qnpu2v0dqk1" path="res://HUDS/main_game_hud.tscn" id="5_wihiu"]
 
 [node name="MainGame2P" type="Node2D" node_paths=PackedStringArray("RoundTimer")]
 script = ExtResource("1_sp22m")
@@ -16,3 +17,5 @@ position = Vector2(509, 435)
 position = Vector2(670, 434)
 
 [node name="RoundTimer" parent="." instance=ExtResource("4_g4unr")]
+
+[node name="MainGameHud" parent="." instance=ExtResource("5_wihiu")]
