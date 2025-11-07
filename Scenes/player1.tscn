@@ -78,6 +78,4 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_pqb02")
 animation = &"idle"
 autoplay = "idle"
-frame = 5
-frame_progress = 0.76994
 script = ExtResource("2_ndhuy")
