@@ -20,7 +20,8 @@ func _ready() -> void:
 	
 	
 func _begin_pregame():
-	gameStage = Globals.GameStage.Pregame 
+	gameStage = Globals.GameStage.Pregame
+	EventBus.on_stage_changed.emit(gameStage)
 	p1Kick = Globals.KickType.Empty
 	p2Kick = Globals.KickType.Empty
 	print("P1 HP: " , p1Hp)
@@ -31,11 +32,13 @@ func _begin_pregame():
 
 func _begin_selection():
 	gameStage = Globals.GameStage.Selection
+	EventBus.on_stage_changed.emit(gameStage)
 	print("Selection Started!")
 	RoundTimer.start()
 	
 func _begin_postgame():
 	gameStage = Globals.GameStage.Postgame
+	EventBus.on_stage_changed.emit(gameStage)
 	
 	var winner = 0 # 0 = tie, 1 = player 1, 2 = player 2
 	match [p1Kick, p2Kick]:
