@@ -70,6 +70,10 @@ func _begin_postgame():
 			winner = 2
 		_:
 			print("I will implement ties later")
+	if winner == 1:
+		$player1._kick(p1Kick)
+	else:
+		$player2._kick(p2Kick)
 	_deal_damage(winner)
 	EventBus.log_kick.emit(Globals.Player.Player1, p1Kick)
 	EventBus.log_kick.emit(Globals.Player.Player2, p2Kick)
