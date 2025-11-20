@@ -8,6 +8,8 @@ var p1Kick: Globals.KickType
 var p2Kick: Globals.KickType 
 var p1Hp: int
 var p2Hp: int
+var p1Time: float
+var p2Time: float
 
 
 func _ready() -> void:
@@ -24,6 +26,8 @@ func _begin_pregame():
 	EventBus.on_stage_changed.emit(gameStage)
 	p1Kick = Globals.KickType.Empty
 	p2Kick = Globals.KickType.Empty
+	p1Time = 0
+	p2Time = 0
 	print("P1 HP: " , p1Hp)
 	print("P2 HP: " , p2Hp)
 	print("Ready...")
@@ -68,8 +72,11 @@ func _begin_postgame():
 		[Globals.KickType.Back, Globals.KickType.Low]:
 			print("P2 wins! P1 loses 1 hp")
 			winner = 2
-		_:
-			print("I will implement ties later")
+		_:  #Ties
+			if p1Time >= p2Time:
+				winner = 1
+			else:
+				winner = 2
 	if winner == 1:
 		$player1._kick(p1Kick)
 	else:
@@ -77,12 +84,14 @@ func _begin_postgame():
 	_deal_damage(winner)
 	EventBus.log_kick.emit(Globals.Player.Player1, p1Kick)
 	EventBus.log_kick.emit(Globals.Player.Player2, p2Kick)
+	EventBus.declare_winner.emit(Globals.Player.Player1 if winner == 1 else Globals.Player.Player2)
 
 	if p2Hp <= 0:
 		_begin_endgame(Globals.Player.Player1)
 	elif p1Hp <= 0:
 		_begin_endgame(Globals.Player.Player2)
 	else:
+		await get_tree().create_timer(3.0).timeout
 		_begin_pregame()
 
 func _begin_endgame(winner: Globals.Player):
@@ -109,7 +118,9 @@ func _on_player_kicked(player: Globals.Player, kick: Globals.KickType):
 		Globals.Player.Player1:
 			print("Kick Saved for player 1: " , kick)
 			p1Kick = kick
+			p1Time = RoundTimer.time_left
 		Globals.Player.Player2:
 			print("Kick Saved for player 2: " , kick)
 			p2Kick = kick
+			p2Time = RoundTimer.time_left
 	

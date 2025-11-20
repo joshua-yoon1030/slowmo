@@ -2,6 +2,8 @@ extends CanvasLayer
 
 @export var P1HP: ProgressBar
 @export var P2HP: ProgressBar
+@export var P1KickHud: Panel
+@export var P2KickHud: Panel
 @export var P1KickList: VBoxContainer
 @export var P2KickList: VBoxContainer
 @export var InformationText: Label
@@ -13,6 +15,7 @@ func _ready():
 	EventBus.update_hp.connect(OnHpUpdate)
 	EventBus.log_kick.connect(OnLogKick)
 	EventBus.on_stage_changed.connect(OnStageChange)
+	EventBus.declare_winner.connect(ChangeWinnerText)
 
 func OnHpUpdate(p1hp: int, p2hp: int):
 	P1HP.value = p1hp
@@ -40,6 +43,17 @@ func OnStageChange(stage: Globals.GameStage):
 		Globals.GameStage.Selection:
 			ZoomCamera.zoom_to_set_point(Vector2(2.0, 2.0), 5.0)
 			InformationText.text = "Pick your Move!"
+			toggleHud(false)
 		Globals.GameStage.Postgame:
 			ZoomCamera.zoom_out(1.0)
-			pass
+			toggleHud(true)
+func ChangeWinnerText(player: Globals.Player):
+	match player:
+		Globals.Player.Player1:
+			InformationText.text = "Player 1 Wins!"
+		_:
+			InformationText.text = "Player 2 Wins!"
+
+func toggleHud(visible : bool):
+	P1KickHud.visible = visible
+	P2KickHud.visible = visible

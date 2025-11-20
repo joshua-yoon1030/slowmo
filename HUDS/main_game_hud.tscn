@@ -8,10 +8,12 @@ bg_color = Color(0.984314, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_623nn"]
 bg_color = Color(2.652e-05, 0.764487, 0.164194, 1)
 
-[node name="MainGameHud" type="CanvasLayer" node_paths=PackedStringArray("P1HP", "P2HP", "P1KickList", "P2KickList", "InformationText")]
+[node name="MainGameHud" type="CanvasLayer" node_paths=PackedStringArray("P1HP", "P2HP", "P1KickHud", "P2KickHud", "P1KickList", "P2KickList", "InformationText")]
 script = ExtResource("1_623nn")
 P1HP = NodePath("TopPanel/Player1/P1Hp")
 P2HP = NodePath("TopPanel/Player2/P2Hp")
+P1KickHud = NodePath("P1Panel")
+P2KickHud = NodePath("P2Panel")
 P1KickList = NodePath("P1Panel/P1List")
 P2KickList = NodePath("P2Panel/P2List")
 InformationText = NodePath("InformationPanel/Label")
@@ -52,6 +54,7 @@ theme_override_font_sizes/font_size = 30
 text = "Player 2"
 
 [node name="P2Hp" type="ProgressBar" parent="TopPanel/Player2"]
+layout_mode = 0
 offset_left = -165.0
 offset_top = 42.0
 offset_right = 118.0
@@ -90,6 +93,7 @@ offset_right = 1151.0
 offset_bottom = 648.0
 
 [node name="Label" type="Label" parent="P2Panel"]
+layout_mode = 0
 offset_right = 191.0
 offset_bottom = 50.0
 theme_override_font_sizes/font_size = 30
@@ -104,9 +108,10 @@ offset_bottom = 428.0
 
 [node name="InformationPanel" type="Panel" parent="."]
 offset_left = 401.0
-offset_top = 173.0
+offset_top = 109.0
 offset_right = 730.0
-offset_bottom = 255.0
+offset_bottom = 191.0
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="InformationPanel"]
 layout_mode = 0
