@@ -43,48 +43,19 @@ func _begin_selection():
 func _begin_postgame():
 	gameStage = Globals.GameStage.Postgame
 	EventBus.on_stage_changed.emit(gameStage)
-	
-	var winner = 0 # 0 = tie, 1 = player 1, 2 = player 2
-	match [p1Kick, p2Kick]:
-		[Globals.KickType.Empty, Globals.KickType.Empty]:
-			print("It's a tie!")
-		[Globals.KickType.Empty, _]:
-			print("P2 wins!")
-			winner = 2
-		[_, Globals.KickType.Empty]:
-			print("P1 wins!")
-			winner = 1
-		[Globals.KickType.High, Globals.KickType.Low]:
-			print("P1 wins! P2 loses 3 hp")
-			winner = 1
-		[Globals.KickType.Back, Globals.KickType.High]:
-			print("P1 wins! P2 loses 2 hp")
-			winner = 1
-		[Globals.KickType.Low, Globals.KickType.Back]:
-			print("P1 wins! P2 loses 1 hp")
-			winner = 1
-		[Globals.KickType.Low, Globals.KickType.High]:
-			print("P2 wins! P1 loses 3 hp")
-			winner = 2
-		[Globals.KickType.High, Globals.KickType.Back]:
-			print("P2 wins! P1 loses 2 hp")
-			winner = 2
-		[Globals.KickType.Back, Globals.KickType.Low]:
-			print("P2 wins! P1 loses 1 hp")
-			winner = 2
-		_:  #Ties
-			if p1Time >= p2Time:
-				winner = 1
-			else:
-				winner = 2
-	if winner == 1:
+
+	var winner = _resolve_combat()
+	_print_combat_result(winner)
+
+	if winner == Globals.Player.Player1:
 		$player1._kick(p1Kick)
 	else:
 		$player2._kick(p2Kick)
+
 	_deal_damage(winner)
 	EventBus.log_kick.emit(Globals.Player.Player1, p1Kick)
 	EventBus.log_kick.emit(Globals.Player.Player2, p2Kick)
-	EventBus.declare_winner.emit(Globals.Player.Player1 if winner == 1 else Globals.Player.Player2)
+	EventBus.declare_winner.emit(winner)
 
 	if p2Hp <= 0:
 		_begin_endgame(Globals.Player.Player1)
@@ -94,6 +65,44 @@ func _begin_postgame():
 		await get_tree().create_timer(3.0).timeout
 		_begin_pregame()
 
+func _resolve_combat() -> Globals.Player:
+	# Handle empty kicks first
+	if p1Kick == Globals.KickType.Empty and p2Kick == Globals.KickType.Empty:
+		return Globals.Player.Player1 if p1Time >= p2Time else Globals.Player.Player2
+	if p1Kick == Globals.KickType.Empty:
+		return Globals.Player.Player2
+	if p2Kick == Globals.KickType.Empty:
+		return Globals.Player.Player1
+
+	# Check if P1 wins
+	if _does_kick_beat(p1Kick, p2Kick):
+		return Globals.Player.Player1
+	# Check if P2 wins
+	elif _does_kick_beat(p2Kick, p1Kick):
+		return Globals.Player.Player2
+	# Tie - winner based on timing
+	else:
+		return Globals.Player.Player1 if p1Time >= p2Time else Globals.Player.Player2
+
+func _does_kick_beat(attacker: Globals.KickType, defender: Globals.KickType) -> bool:
+	return (attacker == Globals.KickType.High and defender == Globals.KickType.Low) or \
+		   (attacker == Globals.KickType.Back and defender == Globals.KickType.High) or \
+		   (attacker == Globals.KickType.Low and defender == Globals.KickType.Back)
+
+func _print_combat_result(winner: Globals.Player):
+	if p1Kick == Globals.KickType.Empty and p2Kick == Globals.KickType.Empty:
+		print("It's a tie!")
+	elif p1Kick == Globals.KickType.Empty:
+		print("P2 wins!")
+	elif p2Kick == Globals.KickType.Empty:
+		print("P1 wins!")
+	elif winner == Globals.Player.Player1:
+		var damage = p1Kick
+		print("P1 wins! P2 loses ", damage, " hp")
+	else:
+		var damage = p2Kick
+		print("P2 wins! P1 loses ", damage, " hp")
+
 func _begin_endgame(winner: Globals.Player):
 	match winner:
 		Globals.Player.Player1:
@@ -101,11 +110,11 @@ func _begin_endgame(winner: Globals.Player):
 		Globals.Player.Player2:
 			print("P2 beats P1!")
 	
-func _deal_damage(winner: int):
+func _deal_damage(winner: Globals.Player):
 	match winner:
-		1:
+		Globals.Player.Player1:
 			p2Hp -= p1Kick
-		2:
+		Globals.Player.Player2:
 			p1Hp -= p2Kick
 	EventBus.update_hp.emit(p1Hp, p2Hp)
 	

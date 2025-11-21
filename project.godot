@@ -25,6 +25,10 @@ Autoload="*res://Scripts/autoload.gd"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdterm/plugin.cfg")
+
 [input]
 
 p1low={
