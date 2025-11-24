@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnonye46qobua"]
+
+[ext_resource type="Script" uid="uid://bcpu7jnmcxcjk" path="res://HUDS/end_game_hud.gd" id="1_iqpkh"]
+
+[node name="EndGameHud" type="CanvasLayer"]
+script = ExtResource("1_iqpkh")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 296.0
+offset_top = 253.0
+offset_right = 806.0
+offset_bottom = 389.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 37.0
+offset_right = 211.0
+offset_bottom = 107.0
+text = "Play again"
+
+[node name="Button2" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 38.0
+offset_right = 461.0
+offset_bottom = 101.0
+text = "Return to Menu
+"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

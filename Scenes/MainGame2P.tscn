@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://35q6s26q8nfe"]
+[gd_scene load_steps=8 format=3 uid="uid://35q6s26q8nfe"]
 
 [ext_resource type="PackedScene" uid="uid://mmqgwpmfuhp8" path="res://Scenes/player1.tscn" id="1_schyv"]
 [ext_resource type="Script" uid="uid://ceor0l2ry7vs1" path="res://Scripts/mainGame.gd" id="1_sp22m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c1fd8x4g1hr6q" path="res://Scenes/round_timer.tscn" id="4_g4unr"]
 [ext_resource type="PackedScene" uid="uid://1qnpu2v0dqk1" path="res://HUDS/main_game_hud.tscn" id="5_wihiu"]
 [ext_resource type="Script" uid="uid://bvrrh6jinc5r0" path="res://Scripts/zoom_camera.gd" id="6_u4b76"]
+[ext_resource type="PackedScene" uid="uid://bnonye46qobua" path="res://HUDS/end_game_hud.tscn" id="6_wjudt"]
 
 [node name="MainGame2P" type="Node2D" node_paths=PackedStringArray("RoundTimer")]
 script = ExtResource("1_sp22m")
@@ -22,6 +23,8 @@ frame_progress = 0.36557
 
 [node name="MainGameHud" parent="." node_paths=PackedStringArray("ZoomCamera") instance=ExtResource("5_wihiu")]
 ZoomCamera = NodePath("../ZoomCamera")
+
+[node name="EndGameHud" parent="." instance=ExtResource("6_wjudt")]
 
 [node name="ZoomCamera" type="Camera2D" parent="." node_paths=PackedStringArray("focus")]
 position = Vector2(576, 326)

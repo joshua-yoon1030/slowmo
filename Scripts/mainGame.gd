@@ -104,6 +104,8 @@ func _print_combat_result(winner: Globals.Player):
 		print("P2 wins! P1 loses ", damage, " hp")
 
 func _begin_endgame(winner: Globals.Player):
+	gameStage = Globals.GameStage.Endgame
+	EventBus.on_stage_changed.emit(gameStage)
 	match winner:
 		Globals.Player.Player1:
 			print("P1 beats P2!")
