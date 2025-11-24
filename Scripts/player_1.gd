@@ -19,3 +19,7 @@ func _kick(kick: Globals.KickType):
 			play("high")
 	await animation_finished
 	play("idle")
+func _takeDamage():
+	play("die")
+	await animation_finished
+	play("idle")

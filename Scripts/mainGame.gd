@@ -49,8 +49,10 @@ func _begin_postgame():
 
 	if winner == Globals.Player.Player1:
 		$player1._kick(p1Kick)
+		$player2._takeDamage()
 	else:
 		$player2._kick(p2Kick)
+		$player1._takeDamage()
 
 	_deal_damage(winner)
 	EventBus.log_kick.emit(Globals.Player.Player1, p1Kick)
@@ -62,7 +64,7 @@ func _begin_postgame():
 	elif p1Hp <= 0:
 		_begin_endgame(Globals.Player.Player2)
 	else:
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(5.0).timeout
 		_begin_pregame()
 
 func _resolve_combat() -> Globals.Player:
