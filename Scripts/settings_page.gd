@@ -93,3 +93,7 @@ func _on_p2back_button_pressed() -> void:
 
 func _on_p2high_button_pressed() -> void:
 	start_rebind("p2high")
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

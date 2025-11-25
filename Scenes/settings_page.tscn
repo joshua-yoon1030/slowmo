@@ -181,9 +181,18 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 text = "L"
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 220.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 50
+text = "Back
+"
+
 [connection signal="pressed" from="P1Controls/VBoxContainer/HBoxContainer/Button" to="." method="_on_p1low_button_pressed"]
 [connection signal="pressed" from="P1Controls/VBoxContainer/HBoxContainer2/Button" to="." method="_on_p1back_button_pressed"]
 [connection signal="pressed" from="P1Controls/VBoxContainer/HBoxContainer3/Button" to="." method="_on_p1high_button_pressed"]
 [connection signal="pressed" from="P2Controls/VBoxContainer/HBoxContainer/Button" to="." method="_on_p2low_button_pressed"]
 [connection signal="pressed" from="P2Controls/VBoxContainer/HBoxContainer2/Button" to="." method="_on_p2back_button_pressed"]
 [connection signal="pressed" from="P2Controls/VBoxContainer/HBoxContainer3/Button" to="." method="_on_p2high_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
