@@ -1,7 +1,7 @@
 extends Control
 
 var menu_options := [
-	{"label": "Start Game", "scene": "res://Scenes/MainGame2P.tscn"},
+	{"label": "Start Game", "scene": "res://HUDS/HowToPlayHud.tscn"},
 	{"label": "Settings", "scene": "res://Scenes/settings_page.tscn"},
 ]
 

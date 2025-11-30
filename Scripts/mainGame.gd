@@ -28,16 +28,12 @@ func _begin_pregame():
 	p2Kick = Globals.KickType.Empty
 	p1Time = 0
 	p2Time = 0
-	print("P1 HP: " , p1Hp)
-	print("P2 HP: " , p2Hp)
-	print("Ready...")
 	await get_tree().create_timer(3.0).timeout
 	_begin_selection()
 
 func _begin_selection():
 	gameStage = Globals.GameStage.Selection
 	EventBus.on_stage_changed.emit(gameStage)
-	print("Selection Started!")
 	RoundTimer.start()
 	
 func _begin_postgame():
@@ -45,7 +41,6 @@ func _begin_postgame():
 	EventBus.on_stage_changed.emit(gameStage)
 
 	var winner = _resolve_combat()
-	_print_combat_result(winner)
 
 	if winner == Globals.Player.Player1:
 		$player1._kick(p1Kick)
@@ -129,11 +124,9 @@ func _on_player_kicked(player: Globals.Player, kick: Globals.KickType):
 	
 	match player:
 		Globals.Player.Player1:
-			print("Kick Saved for player 1: " , kick)
 			p1Kick = kick
 			p1Time = RoundTimer.time_left
 		Globals.Player.Player2:
-			print("Kick Saved for player 2: " , kick)
 			p2Kick = kick
 			p2Time = RoundTimer.time_left
 	
